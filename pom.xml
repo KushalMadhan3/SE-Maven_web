@@ -6,7 +6,7 @@
 
   <groupId>com.mavenweb</groupId>
   <artifactId>mavenweb</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>
   <packaging>war</packaging>
 
   <name>mavenweb Maven Webapp</name>
