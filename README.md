@@ -28,6 +28,30 @@ RUN rm -rf /usr/local/tomcat/webapps/ROOT
 COPY target/mavenweb.war /usr/local/tomcat/webapps/ROOT.war
 
 
+# deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+        - name: web-container
+          image: myapp:latest
+          ports:
+            - containerPort: 8080
+
+
+
 EXPOSE 8080
 
 
