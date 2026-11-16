@@ -59,6 +59,37 @@ RUN pip install flask
 EXPOSE 5000
 CMD ["python", "app.py"]
 
+# docker-compose.yml
+services:
+  web:
+    image: nginx:latest
+    container_name: my-web
+    ports:
+      - "8280:80"
+    networks:
+      - app-net
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: postgres:15
+    container_name: my-db
+    environment:
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: demo
+      POSTGRES_DB: demo_db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app-net
+
+networks:
+  app-net:
+
+volumes:
+  db-data:
+
 
 
 EXPOSE 8080
